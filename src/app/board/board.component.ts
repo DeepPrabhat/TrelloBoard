@@ -4,6 +4,8 @@ import { ApiService } from '../api.service';
 import { RouterTestingHarness } from '@angular/router/testing';
 import { Tasks } from '../models/Tasks';
 import { Lists } from '../models/Lists';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { AddTaskDialogComponent } from '../add-task-dialog/add-task-dialog.component';
 
 @Component({
   selector: 'app-board',
@@ -12,7 +14,16 @@ import { Lists } from '../models/Lists';
 })
 export class BoardComponent implements OnInit{
 
-  constructor(private apiSerice:ApiService){  }
+  constructor(private apiSerice:ApiService,public dialog: MatDialog){  }
+
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(AddTaskDialogComponent, {
+      width: '250px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+  }
 
 
   abc:Lists[]=[];
@@ -112,3 +123,4 @@ export class BoardComponent implements OnInit{
     }
   }
 }
+
