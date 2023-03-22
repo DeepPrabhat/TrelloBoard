@@ -1,17 +1,23 @@
-<div class="oneline">
+<div>
 
-  <div cdkDropListGroup class="container-horizontal">
+  <div cdkDropListGroup>
 
     <div cdkDropList cdkDropListOrientation="horizontal" [cdkDropListData]="abc" (cdkDropListDropped)="dropLists($event)">
 
-      <div cdkDropListGroup>
+      <div cdkDropListGroup class="oneline">
 
-        <div *ngFor="let x of [0,1,2,3]" class="container" cdkDrag>
-          <h2>{{abc[x].listName}}</h2>
+        <div *ngFor="let x of noOfList" class="container" cdkDrag>
+          <div class="container-taskname">
+            <h2>{{abc[x].listName}}</h2>
+          </div>
           <div cdkDropList [cdkDropListData]="abc[x].listTasks" class="list" (cdkDropListDropped)="dropTasks($event)">
             <div class="list-item"  *ngFor="let item of abc[x].listTasks" cdkDrag>{{item}}</div>
-              <button class="sticky-btn" mat-raised-button (click)="openDialog('0ms', '0ms')" style="width: 100%;">Add Task</button>
-          </div>
+            </div>
+            <button class="sticky-btn" mat-raised-button (click)="openDialogTask('0ms', '0ms')" style="width: 100%;">Add Task</button>
+        </div>
+
+        <div class="list-add-btn" style=" margin-top: 68px;">
+          <button style="width: 100%; height:50px;" (click)="addLists()" (click)="openDialogList('0ms', '0ms')">Add Lists</button>
         </div>
 
       </div>
@@ -20,8 +26,6 @@
 
   </div>
 
-  <div class="container list-add" style=" margin-top: 68px;">
-    <button style="width: 100%; height:50px;" (click)="addLists()">Add Lists</button>
-  </div>
+
 
   </div>

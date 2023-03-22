@@ -13,12 +13,15 @@ import {MatButtonModule} from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatChipsModule} from '@angular/material/chips';
+import { AddListDialogComponent } from './add-list-dialog/add-list-dialog.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
     AppComponent,
     BoardComponent,
-    AddTaskDialogComponent
+    AddTaskDialogComponent,
+    AddListDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatButtonModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]

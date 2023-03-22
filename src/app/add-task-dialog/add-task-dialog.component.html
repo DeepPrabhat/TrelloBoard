@@ -12,12 +12,15 @@
     <mat-form-field class="example-full-width">
       <mat-label>Task Description</mat-label>
       <textarea matInput placeholder="Ex. make it quick" formControlName="taskDescription"></textarea>
+      <mat-error *ngIf="!addTaskForm.hasError('required')">
+        Please Enter Task Description
+      </mat-error>
     </mat-form-field>
   </form>
 </div>
 <div mat-dialog-actions>
   <div class="example-button-row">
-  <button mat-button mat-dialog-close cdkFocusInitial (click)="onSubmit()">Ok</button>
+  <button mat-button mat-dialog-close [disabled]="!addTaskForm.valid" cdkFocusInitial (click)="onSubmitTask()">Ok</button>
   <button mat-button mat-dialog-close >Cancel</button>
 </div>
 </div>

@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { ApiService } from '../api.service';
-import { RouterTestingHarness } from '@angular/router/testing';
-import { Tasks } from '../models/Tasks';
 import { Lists } from '../models/Lists';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AddTaskDialogComponent } from '../add-task-dialog/add-task-dialog.component';
+import { AddListDialogComponent } from '../add-list-dialog/add-list-dialog.component';
 
 @Component({
   selector: 'app-board',
@@ -14,11 +13,19 @@ import { AddTaskDialogComponent } from '../add-task-dialog/add-task-dialog.compo
 })
 export class BoardComponent implements OnInit{
 
-  constructor(private apiSerice:ApiService,public dialog: MatDialog){  }
+  constructor(private apiSerice:ApiService,private dialog: MatDialog){  }
 
 
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+  openDialogTask(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(AddTaskDialogComponent, {
+      width: '250px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+  }
+
+  openDialogList(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(AddListDialogComponent, {
       width: '250px',
       enterAnimationDuration,
       exitAnimationDuration,
@@ -27,58 +34,17 @@ export class BoardComponent implements OnInit{
 
 
   abc:Lists[]=[];
-
   num:number=0;
   noOfList:number[]=[];
 
-  task1:Tasks={taskName:"todo"}
-  task2:Tasks={taskName:"done"}
 
-  list1:Lists={listName:"help",listTasks:[
-    'Get to work',
-    'Pick up groceries',
-    'Go home',
-    'Fall asleep',
-    'Get to work',
-    'Pick up groceries',
-    'Go home',
-    'Fall asleep',
-    'Get to work',
-    'Pick up groceries',
-    'Go home',
-    'Fall asleep'
-  ]}
-
-  list2:Lists={listName:"done",listTasks:[
-    'Get up',
-    'Brush teeth',
-    'Take a shower',
-    'Check e-mail',
-    'Walk dog'
-  ]}
-
-  list3:Lists={listName:"fuckyou",listTasks:[
-    'Get up',
-    'gand mara',
-    'Take a shower',
-    'valo khel',
-    'asdasf'
-  ]}
-
-  list4:Lists={listName:"fuckyou",listTasks:[
-    'Get up',
-    'gand mara',
-    'Take a shower',
-    'valo khel',
-    'asdasf'
-  ]}
 
   ngOnInit():void{
     console.log("ngOnInit is called");
-    this.abc.push(this.list1);
-    this.abc.push(this.list2);
-    this.abc.push(this.list3);
-    this.abc.push(this.list4);
+    this.abc.push(this.apiSerice.list1);
+    this.abc.push(this.apiSerice.list2);
+    this.abc.push(this.apiSerice.list3);
+    this.abc.push(this.apiSerice.list4);
     console.log(this.abc);
   }
 

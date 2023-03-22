@@ -10,16 +10,19 @@ import { ApiService } from '../api.service';
 })
 export class AddTaskDialogComponent {
 
-  constructor(public dialogRef: MatDialogRef<AddTaskDialogComponent>) {}
+  constructor(private dialogRefTask: MatDialogRef<AddTaskDialogComponent>,private data:ApiService) {}
 
   addTaskForm = new FormGroup({
     taskName: new FormControl('',Validators.required),
     taskDescription: new FormControl('',Validators.required)
   });
 
-  onSubmit(){
-      console.log(this.addTaskForm.value)
-    }
+
+  onSubmitTask(){
+    // this.data.next(this.addTaskForm.value)
+    console.log(this.addTaskForm.value.taskName)
+    //type problem
+    this.data.addTaskStream(this.addTaskForm.value.taskName);
   }
 
-
+}
